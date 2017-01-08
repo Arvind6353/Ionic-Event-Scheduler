@@ -1,0 +1,32 @@
+<ion-view scroll="true">
+         <ion-nav-buttons side="right">
+
+            <button class="button button-energized " ng-disabled="isToday()" ng-click="today()">Today</button>&nbsp;
+            <button class="button button-calm " ng-click="changeMode('month')">Mon</button>
+            <button class="button button-calm" ng-click="changeMode('week')">Week</button>
+            <button class="button button-calm" ng-click="changeMode('day')">Day</button>
+            <i class="icon ion-android-add-circle balanced" style="font-weight: 800;font-size: 13px;
+    line-height: 32px;padding: 0 8px;cursor:pointer;" ng-click="modal.show()"> &nbsp;Add Event</i>	
+    
+        </ion-nav-buttons>
+
+        <ion-content class="main-content">
+            <calendar ng-model="calendar.currentDate" calendar-mode="calendar.mode" 
+            		  event-source="cadlendar.eventSource"
+                      range-changed="reloadSource(startTime, endTime)"
+                      event-selected="onEventSelected(event)" title-changed="onViewTitleChanged(title)"
+                      time-selected="onTimeSelected(selectedTime, events, disabled)" step="30"
+					
+					  dayview-all-day-event-template-url="dayviewAllDayEventTemplateUrl"
+					  dayview-normal-event-template-url="dayviewAllDayEventTemplateUrl"
+					  weekview-normal-event-template-url="weekviewAllDayEventTemplateUrl"
+					  weekview-all-day-event-template-url="weekviewAllDayEventTemplateUrl"
+          			  delete-event="delete(event)">
+            </calendar>
+     
+	<br/>
+
+
+   </ion-content>
+
+</ion-view>

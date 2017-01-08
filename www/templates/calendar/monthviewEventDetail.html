@@ -1,0 +1,36 @@
+ <ion-content class="event-detail-container" has-bouncing="false" ng-show="showEventDetail" overflow-scroll="false">
+    <table class="table table-bordered table-striped table-fixed event-detail-table">
+      <!--  <tr ng-if="selectedDate.events" >
+            <th style="background-color:#444444;   color:white; border-color: #111">
+               <span style="text-align:left"><b> Duration </b></span>   
+            </th>
+
+            <th style="background-color:#444444;   color:white; border-color: #111">
+                <b> Title </b>
+            </th>   
+
+        </tr>  -->
+        <tr ng-repeat="event in selectedDate.events" >
+            <td  ng-if="!event.allDay" class="monthview-eventdetail-timecolumn" style="width:50%">Starting   : <b>      {{::event.startTime|date: 'HH:mm'}}</b> --   Ending : <b>{{::event.endTime|date: 'HH:mm'}}</b>
+            </td>
+            <td ng-if="event.allDay" class="monthview-eventdetail-timecolumn"><b>All day</b></td>
+            
+            <td class="event-detail">
+
+
+
+
+                
+                <span ng-click="eventSelected({event:event})">{{::event.title}}</span>
+                <span style="float:right">
+                     <i class="icon ion-android-delete assertive"  style="font-weight: 400;font-size: 15px;" ng-click="      deleteEvent({event:event});"></i>  
+                </span>
+
+            </td>
+
+        </tr>
+        <tr ng-if="!selectedDate.events">
+            <td class="no-event-label" ng-bind="::noEventsLabel"></td>
+        </tr>
+    </table>
+<!-- </ion-content> -->

@@ -1,0 +1,82 @@
+<ion-view title="{{chatCtrl.current_room}} ;)" ng-controller="ChatCtrl as chatCtrl">
+	   
+   <ion-nav-buttons side="left">
+       <a class="button button-icon icon ion-home"
+          ui-sref="rooms"></a>
+   </ion-nav-buttons>
+
+   
+   <ion-nav-buttons side="right">
+      <button class="button" ng-click="leaveRoom()">
+            Leave Room :(
+        </button>
+   </ion-nav-buttons>     
+
+
+  <ion-content scroll="true" class="has-header padding">
+	
+	<div class="list" id="messages" ng-if="chatCtrl.messages.length > 0">
+	    <li class="item item-text-wrap no-border {{ isClassNotCurrentUser(msg.user) }}" ng-repeat="msg in chatCtrl.messages track by $index">
+	    	<div class="msg" >	    		
+		    	<div class="details padding">	    		
+					
+					<span ng-if="!isNotCurrentUser(msg.user)">
+							<img  class="avatar {{ isClassNotCurrentUser(msg.user) }}" src="data:image/jpeg;base64,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"/>
+						</span>
+
+						<span ng-if="isNotCurrentUser(msg.user)">
+
+
+							<img  class="avatar {{ isClassNotCurrentUser(msg.user) }}" ng-src="{{img}}"/>
+						</span>
+
+						<span ng-if="isNotCurrentUser(msg.user)">
+					
+								<div class="talk-bubble tri-right round right-in">
+
+								  <div class="talktext">
+								  	<b>{{msg.user}}</b>
+								    <p>{{msg.text}}</p>
+								    <small>{{ humanize(msg.time) }}</small>	
+								  </div>
+								</div>
+						</span>
+
+
+
+						<span ng-if="!isNotCurrentUser(msg.user)">
+					
+								<div class="talk-bubble tri-right round left-in">
+
+								  <div class="talktext">
+								  	<b>{{msg.user}}</b>
+								    <p>{{msg.text}}</p>
+								    <small>{{ humanize(msg.time) }}</small>	
+								  </div>
+								</div>
+						</span>
+
+
+					
+		    	</div>
+	    	</div>
+	    </li>
+	</div>	
+
+	<div class="card" ng-if="!chatCtrl.messages.length">
+	  <div class="item item-text-wrap">
+	    No messages yet.
+	  </div>
+	</div>
+
+  </ion-content>
+
+
+<footer class="bar bar-footer bar-positive item-input-inset has-content">
+    <label class="item-input-wrapper">
+      <input type="text" id="message" name="message" ng-model="chatCtrl.message" placeholder="Type message">
+    </label>
+   	<a class="button button-icon icon ion-android-send" ng-click="sendTextMessage()"></a>
+</footer>
+
+</ion-view>
